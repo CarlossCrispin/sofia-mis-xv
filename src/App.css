@@ -1,0 +1,15 @@
+/* 1. Primero los imports externos */
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700&family=Parisienne&display=swap');
+/* 2. Luego las directivas de Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3. Tus clases personalizadas después */
+.font-parisienne {
+  font-family: 'Parisienne', cursive;
+}
+body {
+  font-family: 'Barlow', sans-serif;
+}
