@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Cotainer from '/GroupHeart.svg';
 
 export const CountdownSection = () => {
   const targetDate = new Date("2026-03-06T18:00:00").getTime();
@@ -21,41 +22,42 @@ export const CountdownSection = () => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  // Días de la semana para el calendario
   const weekDays = ["DOM", "LUN", "MAR", "MIE", "JUE", "VIE", "SAB"];
 
   return (
-    <section id="countdown" className="flex flex-col items-center min-h-screen px-6 py-20 bg-sofia-base-white font-barlow">
-      <div className="w-full max-w-md space-y-16 ">
+    <section id="countdown" className="flex flex-col items-center min-h-screen px-6 py-20 font-sans bg-white">
+      <div className="w-full max-w-md space-y-16">
 
-        {/* Calendario Estilo Imagen */}
-        <div className="p-4 space-y-6 text-center bg-white rounded-lg shadow-lg">
-          <h3 className="text-xl font-medium text-gray-800">Marzo 2026</h3>
-          <div className="grid grid-cols-7 gap-y-4 text-[11px] text-gray-400 font-semibold ">
-            {weekDays.map(day => <div key={day}>{day}</div>)}
+        {/* 1. Calendario con tu Vector */}
+        <div className="p-6 space-y-6 text-center bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-50">
+          <h3 className="text-xl font-bold tracking-tight text-gray-800">Marzo 2026</h3>
 
-            {/* Espacios vacíos para que Marzo empiece en Domingo (1) */}
-            {[...Array(30)].map((_, i) => {
+          <div className="grid grid-cols-7 gap-y-2 text-[10px] text-gray-400 font-bold mb-4">
+            {weekDays.map(day => <div key={day} className="py-2">{day}</div>)}
+
+            {[...Array(31)].map((_, i) => {
               const day = i + 1;
               const isEventDay = day === 6;
+
               return (
-                <div key={i} className="relative flex items-center justify-center h-8">
+                <div key={i} className="relative flex items-center justify-center w-full h-10">
                   {isEventDay && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {/* Corazón estilo garabato (SVG) */}
-                      <svg viewBox="0 0 100 100" className="w-12 h-12 text-sofia-pink-dark opacity-60">
-                        <path
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          d="M50,30 C35,10 5,25 5,50 C5,75 50,95 50,95 C50,95 95,75 95,50 C95,25 65,10 50,30"
-                          strokeLinecap="round"
-                          className="animate-[draw_2s_ease-in-out]"
-                        />
-                      </svg>
-                    </div>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="absolute inset-0 z-0 flex items-center justify-center"
+                    >
+                      <motion.img
+                        src={Cotainer}
+                        alt=""
+                        animate={{ scale: [1, 1.1, 1], rotate: [-4, -2, -4] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute z-0 object-contain pointer-events-none w-14 h-14"
+                      />
+                    </motion.div>
                   )}
-                  <span className={`z-10 text-sm ${isEventDay ? 'text-sofia-pink font-bold' : 'text-gray-700'}`}>
+                  {/* Número del día del evento en ROSA */}
+                  <span className={`relative z-10 text-base ${isEventDay ? 'text-[#FB9BB4] font-black' : 'text-gray-600 font-medium'}`}>
                     {day}
                   </span>
                 </div>
@@ -64,58 +66,48 @@ export const CountdownSection = () => {
           </div>
         </div>
 
-        {/* Texto "FALTAN" Estilo Negrita */}
+        {/* 2. Título */}
         <div className="text-center">
-          <h2 className="text-5xl font-black tracking-tighter text-gray-900 uppercase">
-            Faltan !!
+          <h2 className="text-5xl italic font-black tracking-tighter text-gray-900 uppercase">
+            ¡Faltan!
           </h2>
         </div>
 
-        {/* Contador Limpio con guiones */}
-        <div className="flex flex-col items-center space-y-2 ">
-          <div className="flex items-baseline gap-4 text-sofia-pink">
-            <TimeUnit value={timeLeft.days} />
-            <span className="text-3xl text-gray-900">-</span>
-            <TimeUnit value={timeLeft.hours} />
-            <span className="text-3xl text-gray-400">:</span>
-            <TimeUnit value={timeLeft.minutes} />
-            <span className="text-3xl text-gray-400">:</span>
-            <TimeUnit value={timeLeft.seconds} />
-          </div>
-          <div className="flex gap-8 text-[10px] text-gray-400 uppercase tracking-widest pl-2">
-            <span>Días</span>
-            <span>Horas</span>
-            <span>Minutos</span>
-            <span>Segundos</span>
+        {/* 3. Contador con Números ROSAS y Gruesos */}
+        <div className="flex flex-col items-center space-y-6">
+          <div className="flex items-center justify-center gap-3">
+            <TimeUnit value={timeLeft.days} label="Días" />
+            <span className="pb-8 text-4xl font-bold text-[#FB9BB4]">-</span>
+            <TimeUnit value={timeLeft.hours} label="Hrs" />
+            <span className="pb-8 text-3xl font-bold text-[#FB9BB4]/30">:</span>
+            <TimeUnit value={timeLeft.minutes} label="Min" />
+            <span className="pb-8 text-3xl font-bold text-[#FB9BB4]/30">:</span>
+            <TimeUnit value={timeLeft.seconds} label="Seg" />
           </div>
         </div>
 
-        {/* Card de Evento Estilo Simple */}
-        <div className="bg-white border border-gray-100 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] p-8 text-center space-y-4">
-          
-          <div className="inline-block px-6 py-2 rounded-full bg-sofia-pink-light/30">
-            <p className="text-sm font-medium text-sofia-pink">XV años de Sofia</p>
+        {/* 4. Detalle Final */}
+        <div className="bg-white border border-gray-100 rounded-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] p-8 text-center">
+          <div className="inline-block px-6 py-1.5 rounded-full bg-[#FB9BB4]/10 mb-4">
+            <p className="text-xs font-black text-[#FB9BB4] uppercase tracking-widest">XV años de Sofia</p>
           </div>
-          <p className="text-sm font-medium text-gray-500">
-            6 de Marzo, 2026 • 6:00 PM
-          </p>
+          <p className="text-xl font-bold text-gray-800">Viernes 06 de Marzo</p>
+          <p className="text-sm font-medium text-gray-500">6:00 PM • 2026</p>
         </div>
 
       </div>
-
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes draw {
-          from { stroke-dasharray: 0 1000; }
-          to { stroke-dasharray: 1000 1000; }
-        }
-      `}} />
     </section>
   );
 };
 
-const TimeUnit = ({ value }) => (
-  <span className="text-5xl font-light tabular-nums">
-    {String(value).padStart(2, '0')}
-  </span>
+// Sub-componente actualizado con color ROSA para los números
+const TimeUnit = ({ value, label }) => (
+  <div className="flex flex-col items-center">
+    <span className="text-5xl font-black leading-none tracking-tighter tabular-nums text-[#FB9BB4]">
+      {String(value).padStart(2, '0')}
+    </span>
+    <span className="mt-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+      {label}
+    </span>
+  </div>
 );

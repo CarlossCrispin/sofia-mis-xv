@@ -8,6 +8,12 @@ import { MusicSection } from './components/MusicSection.jsx';
 import { WelcomeSection } from './components/WelcomeSection.jsx';
 import { CountdownSection } from './components/CountdoenSection.jsx'; // Nota: verifica si el nombre es Countdown o Countdoen
 import { Navigation } from './components/Navigation.jsx';
+import { PlaceSection } from './components/PlaceSection.jsx';
+import { DressCodeSection } from './components/DressCodeSection.jsx';
+import { RSVPSection } from './components/handleWhatsApp.jsx';
+import { GiftsSection } from './components/GiftSection.jsx';
+import { GallerySection } from './components/Gallery.jsx';
+import { Footer } from './components/Footer.jsx';
 
 
 function App() {
@@ -28,6 +34,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-sofia-base-white">
+
       <AnimatePresence mode="wait">
         {phase === 'video' && (
           <VideoIntro key="video-step" onVideoEnd={() => setPhase('splash')} />
@@ -50,7 +57,6 @@ function App() {
         >
           <Navigation />
 
-          {/* Forzamos que el Hero sea lo primero que se vea */}
           <section id="hero" className="min-h-[100dvh]">
             <Hero />
           </section>
@@ -66,20 +72,27 @@ function App() {
           <section id="countdown">
             <CountdownSection />
           </section>
-          
-          <section id="place" className="min-h-[100dvh] bg-indigo-500">
-            {/* Tu componente de Regalos */}
+
+          <section id="place" className="min-h-[100dvh]">
+            <PlaceSection />
           </section>
-          
+          <DressCodeSection />
+
           <section id="regalos" className="min-h-[100dvh]">
-            {/* Tu componente de Regalos */}
+            <GiftsSection />
           </section>
 
-          <section id="galeria" className="min-h-[100dvh] bg-red-500">
-            {/* Tu componente de Galería */}
+          <section id="galeria" className="min-h-[100dvh]">
+            <GallerySection />
           </section>
+          <section id="rsp" className="min-h-[100dvh]">
+            <RSVPSection />
+          </section>
+
+          <Footer />
         </motion.main>
       )}
+
     </div>
   );
 }
