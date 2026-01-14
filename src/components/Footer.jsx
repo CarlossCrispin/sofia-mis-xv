@@ -36,7 +36,7 @@ export const Footer = () => {
       >
         <div className="w-3 h-3 bg-[#FB9BB4] rounded-full shadow-[0_0_8px_rgba(251,155,180,0.5)]" />
         <span className="text-[#FB9BB4] font-bold text-sm tracking-wider">
-          6 de Marzo; 2025
+          6 de Marzo; 2026
         </span>
       </motion.div>
 
