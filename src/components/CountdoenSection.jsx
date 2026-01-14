@@ -92,7 +92,7 @@ export const CountdownSection = () => {
             <p className="text-xs font-black text-[#FB9BB4] uppercase tracking-widest">XV años de Sofia</p>
           </div>
           <p className="text-xl font-bold text-gray-800">Viernes 06 de Marzo</p>
-          <p className="text-sm font-medium text-gray-500">6:00 PM • 2026</p>
+          <p className="text-sm font-medium text-gray-500">7:00 PM • 2026</p>
         </div>
 
       </div>
