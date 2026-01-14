@@ -87,7 +87,7 @@ export const RSVPSection = () => {
       >
         <Heart size={14} className="text-[#FB9BB4] shrink-0" />
         <p className="text-[10px] text-gray-600 leading-tight uppercase tracking-[0.1em] font-bold">
-          Al hacer clic, se abrirá WhatsApp. <span className="text-[#FB9BB4]">Elige una opción (Sí asistiré / No podré )</span>, escribe tu nombre y envía el mensaje.
+          Al hacer clic, se abrirá WhatsApp. <span className="text-[#FB9BB4]">Elige una opción(Sí asistiré / No podré)</span>, escribe tu nombre y envía el mensaje.
         </p>
       </motion.div>
 
