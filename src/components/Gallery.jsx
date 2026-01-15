@@ -7,7 +7,7 @@ export const GallerySection = () => {
     { id: 1, src: '/Img1.jpg', alt: 'Momento 1' },
     { id: 2, src: '/Img2.jpg', alt: 'Momento 2' },
     { id: 3, src: '/Img3.jpg', alt: 'Momento 3' },
-    { id: 4, src: '/Hero.jpg', alt: 'Momento 4' },
+    { id: 4, src: '/Img4.jpg', alt: 'Momento 4' },
   ];
 
   return (

@@ -52,7 +52,7 @@ export const RSVPSection = () => {
             </span>
           </div><div className="mb-8">
             <span className="text-gray-400 font-bold tracking-[0.4em] text-xs uppercase">
-              10 . FEB . 2026
+              1 . FEB . 2026
             </span>
           </div>
 
